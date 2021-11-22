@@ -14,7 +14,7 @@ conda create -n gsc python=3.8
 source activate gsc
 pip install torch==1.8.1+cu102 -f https://download.pytorch.org/whl/cu102/torch_stable.html
 pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.8.1+cu102.html
-pip install transformers==2.0.0
+pip install transformers==2.0.1
 pip install nltk spacy sentencepiece numpy tqdm tensorboard
 python -m spacy download en
 
@@ -70,14 +70,47 @@ For OpenBookQA, run
 ./eval_gsc__obqa.sh
 ```
 
+## Trained model examples
+CommonsenseQA
+<table>
+  <tr>
+    <th>Trained model</th>
+    <th>In-house Dev acc.</th>
+    <th>In-house Test acc.</th>
+  </tr>
+  <tr>
+    <th>RoBERTa-large + GSC <a href="https://drive.google.com/file/d/1W0khl1F6V_NSHdE1amuMeo9OKGKNQfrV/view?usp=sharing">[link]</a></th>
+    <th>0.7969</th>
+    <th>0.7478</th>
+  </tr>
+</table>
+
+OpenBookQA
+<table>
+  <tr>
+    <th>Trained model</th>
+    <th>Dev acc.</th>
+    <th>Test acc.</th>
+  </tr>
+  <tr>
+    <th>RoBERTa-large + GSC <a href="https://drive.google.com/file/d/1-5orcKIP39UTCZ2wfYGEFIL1H3EmjvjV/view?usp=sharing">[link]</a></th>
+    <th>0.6960</th>
+    <th>0.7060</th>
+  </tr>
+</table>
+
+
+**Note**: The models were trained and tested with HuggingFace transformers==2.0.1.
 
 
 ## Acknowledgment
 This repo is built upon the following works:
 ```
-QA-GNN: Reasoning with Language Models and Knowledge Graphs for Question Answering. Michihiro Yasunaga and Hongyu Ren and Antoine Bosselut and Percy Liang and Jure Leskovec. NAACL 2021. https://github.com/michiyasunaga/qagnn
+QA-GNN: Reasoning with Language Models and Knowledge Graphs for Question Answering. Michihiro Yasunaga and Hongyu Ren and Antoine Bosselut and Percy Liang and Jure Leskovec. NAACL 2021. 
+https://github.com/michiyasunaga/qagnn
 
-Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering. Yanlin Feng*, Xinyue Chen*, Bill Yuchen Lin, Peifeng Wang, Jun Yan and Xiang Ren. EMNLP 2020. https://github.com/INK-USC/MHGRN
+Scalable Multi-Hop Relational Reasoning for Knowledge-Aware Question Answering. Yanlin Feng*, Xinyue Chen*, Bill Yuchen Lin, Peifeng Wang, Jun Yan and Xiang Ren. EMNLP 2020. 
+https://github.com/INK-USC/MHGRN
 
 ```
 Many thanks to the authors and developers!
