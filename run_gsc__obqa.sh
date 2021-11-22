@@ -1,4 +1,4 @@
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=6
 dt=`date '+%Y%m%d_%H%M%S'`
 
 dataset="obqa"

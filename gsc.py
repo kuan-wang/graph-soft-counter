@@ -48,8 +48,8 @@ def main():
     parser.add_argument('--use_cache', default=True, type=bool_flag, nargs='?', const=True, help='use cached data to accelerate data loading')
 
     # model architecture
-    parser.add_argument('-k', '--k', default=5, type=int, help='perform k-layer message passing')
-    parser.add_argument('--enc_dim', default=128, type=int, help='hidden dimension of the edge encoder')
+    parser.add_argument('-k', '--k', default=2, type=int, help='perform k-layer message passing')
+    parser.add_argument('--enc_dim', default=32, type=int, help='hidden dimension of the edge encoder')
     parser.add_argument('--fc_dim', default=512, type=int, help='number of FC hidden units')
     parser.add_argument('--fc_layer_num', default=0, type=int, help='number of FC layers')
     parser.add_argument('--counter_type', default=f'gsc', help='graph soft counter or hard counter')
@@ -65,8 +65,8 @@ def main():
 
     # optimization
     parser.add_argument('-dlr', '--decoder_lr', default=1e-2, type=float, help='learning rate')
-    parser.add_argument('-mbs', '--mini_batch_size', default=1, type=int)
-    parser.add_argument('-ebs', '--eval_batch_size', default=2, type=int)
+    parser.add_argument('-mbs', '--mini_batch_size', default=2, type=int)
+    parser.add_argument('-ebs', '--eval_batch_size', default=4, type=int)
     parser.add_argument('--unfreeze_epoch', default=4, type=int)
     parser.add_argument('--refreeze_epoch', default=10000, type=int)
 
@@ -285,16 +285,11 @@ def train(args):
 
 def eval_detail(args):
     assert args.load_model_path is not None
-    decoder_path = args.load_model_path
-    encoder_path = args.load_sentvecs_model_path
-    decoder_model, _old_args = torch.load(decoder_path)
-    encoder_model, _old_args = torch.load(encoder_path)
-    old_args  = args
-
-    model = LM_QAGSC(args, args.encoder, k=args.k, n_ntype=4, n_etype=args.num_relation, enc_dim=args.enc_dim,
-                    fc_dim=args.fc_dim, n_fc_layer=args.fc_layer_num, p_fc=args.dropoutf, init_range=args.init_range)                            
-    model.load_state_dict(decoder_model)
-    model.encoder.load_state_dict(encoder_model.encoder.state_dict())
+    model_path = args.load_model_path
+    model_state, old_args = torch.load(model_path, map_location=torch.device('cpu'))
+    model = LM_QAGSC(old_args, old_args.encoder, k=old_args.k, n_ntype=4, n_etype=old_args.num_relation, enc_dim=old_args.enc_dim,
+                    fc_dim=old_args.fc_dim, n_fc_layer=old_args.fc_layer_num, p_fc=old_args.dropoutf, init_range=old_args.init_range)                            
+    model.load_state_dict(model_state.state_dict())
 
     if torch.cuda.device_count() >= 2 and args.cuda:
         device0 = torch.device("cuda:0")
