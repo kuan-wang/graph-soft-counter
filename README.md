@@ -12,11 +12,10 @@ You can just run the bash file 'setup.sh' or run the following commands to creat
 ```bash
 conda create -n gsc python=3.8
 source activate gsc
-pip install torch==1.8.1+cu102 -f https://download.pytorch.org/whl/cu102/torch_stable.html
-pip install torch-scatter torch-sparse torch-cluster torch-spline-conv torch-geometric -f https://data.pyg.org/whl/torch-1.8.1+cu102.html
-pip install transformers==2.0.1
-pip install nltk spacy sentencepiece numpy tqdm tensorboard
-python -m spacy download en
+conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
+conda install pyg -c pyg
+conda install transformers
+
 
 ```
 
@@ -100,7 +99,7 @@ OpenBookQA
 </table>
 
 
-**Note**: The models were trained and tested with HuggingFace transformers==2.0.1.
+**Note**: The models were trained and tested with HuggingFace transformers==2.0.1. 
 
 
 ## Acknowledgment
