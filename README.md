@@ -10,7 +10,7 @@ The anonymous opensource code of the paper: [GNN is a Counter? Revisiting GNN fo
 ## Environment 
 You can just run the bash file 'setup.sh' or run the following commands to create a conda environment:
 ```bash
-conda create -n gsc python=3.8
+conda create -n gsc python=3.9
 source activate gsc
 conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
 conda install pyg -c pyg
