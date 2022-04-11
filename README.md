@@ -1,10 +1,18 @@
 # Graph Soft Counter
-The anonymous opensource code of the paper: [GNN is a Counter? Revisiting GNN for Question Answering](https://openreview.net/pdf?id=hzmQ4wOnSb).
+This repo contains PyTorch implementation for paper: [GNN is a Counter? Revisiting GNN for Question Answering](https://arxiv.org/abs/2110.03192) (ICLR 2022).
 
 <p align="center">
   <img src="./figs/gsc_overview.png" width="1000" title="Overview of Graph Soft Counter" alt="">
 </p>
 
+```
+@inproceedings{gsc,
+author = {Wang, Kuan and Zhang, Yuyu and Yang, Diyi and Song, Le and Qin, Tao},
+title = {GNN is a Counter? Revisiting GNN for Question Answering},
+booktitle = {International conference on learning representations (ICLR), 2022},
+year = {2022}
+}
+```
 
 
 ## Environment 
